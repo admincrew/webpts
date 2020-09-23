@@ -15,6 +15,7 @@ function tanggal_indo($date)
 				'November',
 				'Desember'
 			);
+<<<<<<< HEAD
 	$hari = array (
 			'Minggu',		
 			'Senin',
@@ -36,4 +37,13 @@ function linkPts($calDay, $class)
 		'link' => $checkLink['desc'];
 	];
 	return $thisLink;
+=======
+	$split = explode('-', $date);
+	return $split[2] . ' ' . $bulan[ (int)$split[1] ] . ' ' . $split[0];
+}
+
+function linkPts()
+{
+    
+>>>>>>> 381dd0bd9b0c5b27d2485a524c8dc87b56dcc9bf
 }
