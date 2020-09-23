@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 require 'mainconnect.php';
 
 date_default_timezone_set('Asia/Jakarta');
@@ -69,3 +70,15 @@ $calDay = $expCall[0];
 // $linkPts = $soalPts['link'];
 
 // var_dump($soalPts);
+=======
+$kalender = tanggal_indo($date);
+$expCall = explode(' ',$kalender);
+$calDay = $expCall[0];
+
+$class = 7;
+
+$soalPts = linkPts($calDay, $class)
+$labelPts = $soalPts['label'];
+$linkPts = $soalPts['link'];
+?>
+>>>>>>> ba74732739cef848085e043409b2274c85d528be
