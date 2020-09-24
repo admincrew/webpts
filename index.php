@@ -82,7 +82,10 @@ require 'aksi_soal.php';
                 <div class="text-uppercase" id="dateNow"></div>
               </h2>
               <h3 class="text-uppercase mt-4 mb-5">
-                KELAS 8 A | B | C | D
+                <?= $time; ?> WITA
+              </h3>
+              <h3 class="text-uppercase mt-4 mb-5">
+                KELAS <?= $class; ?> A | B | C | D
               </h3>
               <h5 class="text-uppercase">
                 Silahkan Klik Tombol Link Di Bawah
@@ -90,20 +93,33 @@ require 'aksi_soal.php';
               </h5>
               <?php
               if ($calDay !== 'Minggu') {
-                $checkLink = $call->query("SELECT * FROM soal WHERE day = '$calDay'");
-                while ($row = $checkLink->fetch_assoc()) {
-                  $response[] = [
-                    'nama' => $row['label'],
-                    'url' => $row['link']
-                  ];
+                if ($now >= $start_time && $now <= $end_time) {
+                  $checkLink = $call->query("SELECT * FROM soal WHERE day = '$calDay' AND class = '$class'");
+                  while ($row = $checkLink->fetch_assoc()) {
+                    $response[] = [
+                      'nama' => $row['label'],
+                      'url' => $row['link']
+                    ];
+                  }
+                  if ($calDay == "Rabu" || "Kamis" || "Jumat") {
+                    echo '<div>
+                                <a href="' . $response[0]['url'] . '" class="primary-btn2 mb-3 mb-sm-0" target="_blank">' . $response[0]['nama'] . '</a>
+                                <a href="' . $response[1]['url'] . '" class="primary-btn2 mb-3 mb-sm-0" target="_blank">' . $response[1]['nama'] . '</a>
+                                <a href="' . $response[2]['url'] . '" class="primary-btn2 mb-3 mb-sm-0" target="_blank">' . $response[2]['nama'] . '</a>
+                              </div>';
+                  } else {
+                    echo '<div>
+                                <a href="' . $response[0]['url'] . '" class="primary-btn2 mb-3 mb-sm-0" target="_blank">' . $response[0]['nama'] . '</a>
+                                <a href="' . $response[1]['url'] . '" class="primary-btn2 mb-3 mb-sm-0" target="_blank">' . $response[1]['nama'] . '</a>
+                              </div>';
+                  }
+                } else {
+                  echo '<div><a href="#" class="primary-btn2 mb-3 mb-sm-0" target="_blank">UJIAN DIBUKA PUKUL 07.00 HINGGA 17.00 WITA</a></div>';
                 }
-                echo '<div>
-                            <a href="' . $response[0]['url'] . '" class="primary-btn2 mb-3 mb-sm-0">' . $response[0]['nama'] . '</a>
-                            <a href="' . $response[1]['url'] . '" class="primary-btn2 mb-3 mb-sm-0">' . $response[1]['nama'] . '</a>
-                          </div>';
               } else {
-                echo '<div><a href="#" class="primary-btn2 mb-3 mb-sm-0">UJIAN AKAN DIMULAI BESOK</a></div>';
+                echo '<div><a href="#" class="primary-btn2 mb-3 mb-sm-0" target="_blank">UJIAN AKAN DIMULAI BESOK</a></div>';
               }
+
               ?>
             </div>
           </div>

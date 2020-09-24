@@ -1,11 +1,11 @@
 <?php
-<<<<<<< HEAD
 require 'mainconnect.php';
 
-date_default_timezone_set('Asia/Jakarta');
+date_default_timezone_set('Asia/Singapore');
 ini_set('memory_limit', '1024M');
 $date = date("Y-m-d");
 $time = date("H:i:s");
+$class = 7;
 
 
 function tanggal_indo($date, $cetak_hari = false)
@@ -47,6 +47,19 @@ $kalender = tanggal_indo($date, true);
 $expCall = explode(', ', $kalender);
 $calDay = $expCall[0];
 
+$start_time = strtotime("07.00");
+$end_time = strtotime("17.00");
+$now = date("H:i");
+$now = strtotime($now);
+
+// $checkLink = $call->query("SELECT * FROM soal WHERE day = '$calDay' AND class = '$class'");
+// while ($row = $checkLink->fetch_assoc()) {
+// 	$response[] = [
+// 		'nama' => $row['label'],
+// 		'url' => $row['link']
+// 	];
+// }
+// print_r($response[2]);
 // $checkLink = $call->query("SELECT * FROM soal WHERE day = 'Kamis'");
 
 // while ($row = $checkLink->fetch_assoc()) {
@@ -70,15 +83,3 @@ $calDay = $expCall[0];
 // $linkPts = $soalPts['link'];
 
 // var_dump($soalPts);
-=======
-$kalender = tanggal_indo($date);
-$expCall = explode(' ',$kalender);
-$calDay = $expCall[0];
-
-$class = 7;
-
-$soalPts = linkPts($calDay, $class)
-$labelPts = $soalPts['label'];
-$linkPts = $soalPts['link'];
-?>
->>>>>>> ba74732739cef848085e043409b2274c85d528be
